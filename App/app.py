@@ -4,18 +4,29 @@ import numpy as np
 import joblib
 import os
 
+st.set_page_config(
+    page_title="Telecom Churn Prediction App",
+    page_icon="📊",
+    layout="centered"
+)
+
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 model = joblib.load(os.path.join(BASE_DIR, "churn_model.pkl"))
 scaler = joblib.load(os.path.join(BASE_DIR, "scaler.pkl"))
 
-st.title("Telecom Customer Churn Prediction")
+st.title("📊 Telecom Customer Churn Prediction")
+st.markdown("Predict whether a customer is likely to churn based on service and contract details.")
+st.markdown("---")
+
 
 st.write("Enter customer details to predict churn risk.")
 
 # Input fields
-contract = st.selectbox("Contract Type", ["Month-to-month", "One year", "Two year"])
-tenure = st.number_input("Tenure (months)", min_value=0, max_value=100, value=12)
+st.sidebar.header("Enter Customer Details")
+contract = st.sidebar.selectbox("Contract Type", ["Month-to-month", "One year", "Two year"])
+tenure = st.sidebar.number_input("Tenure (months)", min_value=0, max_value=100, value=12)
 monthly_charges = st.number_input("Monthly Charges", min_value=0.0, value=70.0)
 internet_service = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"])
 payment_method = st.selectbox(
@@ -71,12 +82,12 @@ input_data[["tenure", "MonthlyCharges"]] = scaler.transform(
 )
 
 # Predict
-if st.button("Predict Churn"):
+if st.button("🔮 Predict Churn"):
     prediction = model.predict(input_data)[0]
     probability = model.predict_proba(input_data)[0][1]
 
     if prediction == 1:
-        st.error(f"Churn Risk: HIGH\nProbability: {probability:.2f}")
+        st.error(f"⚠️ High Churn Risk\n\nProbability: {probability:.2f}")
     else:
-        st.success(f"Churn Risk: LOW\nProbability: {probability:.2f}")
+        st.success(f"✅ Low Churn Risk\n\nProbability: {probability:.2f}")
 

@@ -55,7 +55,7 @@ Matplotlib, Seaborn
 
 Tableau
 
-Streamlit
+FASTAPI
 
 GitHub
 

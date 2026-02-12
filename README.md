@@ -105,8 +105,7 @@ Churn by contract type, tenure group, payment method, and internet service
 # Web Application
 A Streamlit web app where users can enter customer details and receive churn risk predictions.
 Live App Link:
-(https://telecom-churn-project-cq2k8pduagoyov5uqyffht.streamlit.app/)
-
+(https://v0-telecom-churn-dashboard.vercel.app/)
 # Results
 The project delivers a complete end-to-end churn analytics and prediction system with business insights, predictive modeling, visualization, and deployment.
 
